@@ -14,6 +14,7 @@ class HousesController < ApplicationController
   def create
   	@house = House.new(house_params)
   	@house.save
+  	redirect_to house_path(@house)
   end
 
   def edit
@@ -23,6 +24,11 @@ class HousesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def house_params
+  	params.require(:house).permit(:title, :description, :address, :price_in_pence, :number_of_rooms, :max_guests)
   end
 
 end
