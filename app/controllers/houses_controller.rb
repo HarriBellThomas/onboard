@@ -8,11 +8,15 @@ class HousesController < ApplicationController
   end
 
   def new
-  	@house = House.new
+    require_user
+    @user = current_user
+  	@house = @user.houses.new
   end
 
   def create
-  	@house = House.new(house_params)
+    require_user
+    @user = current_user
+  	@house = @user.houses.new(house_params)
   	if @house.save
       flash[:success] = "House added successfully."
   	  redirect_to house_path(@house)
@@ -23,11 +27,15 @@ class HousesController < ApplicationController
   end
 
   def edit
-    @house = House.find(params[:id])
+    require_user
+    @user = current_user
+    @house = @user.houses.find(params[:id])
   end
 
   def update
-    @house = House.find(params[:id])
+    require_user
+    @user = current_user
+    @house = @user.houses.find(params[:id])
     if @house.update(house_params)
       flash[:success] = "House updated successfully."
       redirect_to house_path(@house)
@@ -38,7 +46,10 @@ class HousesController < ApplicationController
   end
 
   def destroy
-    @house = House.find( params[:id] )
+    require_user
+    @user = current_user
+
+    @house = @user.houses.find( params[:id] )
     if @house.present?
       if @house.destroy
         flash[:success] = "Successfully deleted '#{@house.title}'"
@@ -53,7 +64,7 @@ class HousesController < ApplicationController
 
   private
   def house_params
-  	params.require(:house).permit(:title, :description, :address, :price_in_pence, :number_of_rooms, :max_guests, :image)
+  	params.require(:house).permit(:title, :description, :address, :price_in_pence, :number_of_rooms, :max_guests, :image, :user_id)
   end
 
 end

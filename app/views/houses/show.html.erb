@@ -9,7 +9,7 @@
 		<%= image_tag @house.image.url %>
 	</div>
 	
-	<div class="map">
+	<div class="map" data-lat="<%= @house.latitude %>" data-lng="<%= @house.longitude %>">
 
 	</div>
 
@@ -20,7 +20,7 @@
 
 
 	<div class="user">
-
+		Added by <em><%= @house.user.username %></em>
 	</div>
 
 
