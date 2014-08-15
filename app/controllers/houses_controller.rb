@@ -17,7 +17,7 @@ class HousesController < ApplicationController
     require_user
     @user = current_user
   	@house = @user.houses.new(house_params)
-  	if @house.save
+  	if @house.save!
       flash[:success] = "House added successfully."
   	  redirect_to house_path(@house)
     else
