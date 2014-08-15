@@ -9,8 +9,13 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(user_params)
-  	@user.save
-  	redirect_to root_path
+  	if @user.save
+      flash[:success] = "Thanks for signing up!"
+  	  redirect_to root_path
+    else
+      flash[:error] = "Oops, try again."
+      render :new
+    end
   end
 
   def edit
