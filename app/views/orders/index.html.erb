@@ -1,5 +1,8 @@
 <% @orders.each do |order| %>
 	<%= order.house.title %>
+	<%= order.house.price_in_pence %>
+	<%= order.house.image.url %>
+
 
 	<br><br>
 <% end %>
