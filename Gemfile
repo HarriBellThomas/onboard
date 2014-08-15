@@ -57,12 +57,3 @@ gem 'omniauth-twitter'
 gem 'omniauth-linkedin'
 
 ruby "2.1.2"
-
-
-
-
-
-
-
-
-

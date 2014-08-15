@@ -19,14 +19,23 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = "Profile updated successfully"
+      redirect_to root_path
+    else
+      flash.now[:error] = "Oops! An error occured."
+      render :edit
+    end
   end
 
   private
   def user_params
-  	params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  	params.require(:user).permit(:username, :email, :fullname, :password, :password_confirmation)
   end
 
 end

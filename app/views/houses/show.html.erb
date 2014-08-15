@@ -2,7 +2,8 @@
 
 	<h2><%= @house.title %></h2>
 	<div class="address">
-		<%= @house.address %>
+		<%= @house.address %><br>
+		£<%= (@house.price_in_pence)/100 %>/wk
 	</div>
 	
 	<div class="image">
@@ -18,9 +19,13 @@
 		<%= simple_format @house.description %>
 	</div>
 
-
+	<% if @house.user.fullname.present?  %>
+		<% @author_name = @house.user.fullname %>
+	<% else %>
+		<% @author_name = @house.user.username %>
+	<% end %>
 	<div class="user">
-		Added by <em><%= @house.user.username %></em>
+		Added by <%= @author_name %><% if @is_author %> (You)<% end %>
 	</div>
 
 
