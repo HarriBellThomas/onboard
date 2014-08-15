@@ -1,0 +1,13 @@
+<%= simple_form_for @house do |f| %>
+
+	<%= f.input :title %>
+	<%= f.input :address %>
+	<%= f.input :image %>
+	<%= f.input :description %>
+	<%= f.input :price_in_pence %>
+	<%= f.input :number_of_rooms %>
+	<%= f.input :max_guests %>
+
+	<%= f.button :submit %>
+
+<% end %>

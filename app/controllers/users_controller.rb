@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       flash[:success] = "Thanks for signing up!"
   	  redirect_to root_path
     else
-      flash[:error] = "Oops, try again."
+      flash.now[:error] = "Oops, try again."
       render :new
     end
   end

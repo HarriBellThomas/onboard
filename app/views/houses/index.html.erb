@@ -4,11 +4,16 @@
 	<% @houses.each do |house| %>
 	<div class="room">
 
-		<h2><%= link_to house.title, house_path(house.id) %></h2>
-
-		<p><%= house.address %></p>
-		<p>£<%= house.price_in_pence / 100 %>/wk</p>
+		<%= link_to house_path(house.id) do %>
+			<%= image_tag house.image.url %>
 		
+			<div>
+				<h2><%= link_to house.title, house_path(house.id) %></h2>
+				<p><%= house.address %></p>
+				<p>£<%= house.price_in_pence / 100 %>/wk</p>
+
+			</div>
+		<% end %>
 
 	</div>
 	<% end %>		

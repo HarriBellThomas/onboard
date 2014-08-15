@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 	  	redirect_to root_path
 	else
 
-		flash[:error] = "Oops! Try again..."
+		flash.now[:error] = "Oops! Try again..."
 		render :new
 	end
 

@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   root 'houses#index'
 
   resources :users do
-  	resources :houses	
+  	resources :houses, only: [:show, :index]
   end
   
-  resource :session
+  resource :session, only: [:new, :create, :destroy]
   resources :houses 
   resources :orders
 
