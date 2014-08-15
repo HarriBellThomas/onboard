@@ -6,10 +6,13 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  
   root 'houses#index'
-  resources :houses
+
   resources :users do
-  	resource :session
+  	resource :houses
   end
+  resource :session
+  resources :houses
 
 end

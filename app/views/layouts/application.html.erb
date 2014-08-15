@@ -22,13 +22,16 @@
     </form>
 
     <nav class="seven columns">
+
+      <%= session[:user_id] %>
+
       <%# link_to "Dashboard", "#" %>
       <%# link_to "Add a room", new_house_path %>
       <%# link_to "Orders", "#" %>
       <%# link_to "Log out", "#" %>
 
       <%= link_to "Sign up", new_user_path %>
-      <%#= link_to "Sign in", new_user_session_path %>
+      <%= link_to "Sign in", new_session_path %>
     </nav>
   </header>
 
