@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'sessions/new'
-
 	#get 'hello/name', to 'houses#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -10,9 +8,11 @@ Rails.application.routes.draw do
   root 'houses#index'
 
   resources :users do
-  	resource :houses
+  	resources :houses	
   end
+  
   resource :session
-  resources :houses
+  resources :houses 
+  resources :orders
 
 end

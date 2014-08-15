@@ -23,15 +23,21 @@
 
     <nav class="seven columns">
 
-      <%= session[:user_id] %>
+      <% if current_user? %>
 
-      <%# link_to "Dashboard", "#" %>
-      <%# link_to "Add a room", new_house_path %>
-      <%# link_to "Orders", "#" %>
-      <%# link_to "Log out", "#" %>
+        <%= current_user.username %>
+        <%= link_to "Dashboard", "#" %>
+        <%= link_to "Add a room", new_house_path %>
+        <%= link_to "Orders", "#" %>
+        <%= link_to "Log out", session_path, method: :delete %>
+      
+      <% else %>
 
-      <%= link_to "Sign up", new_user_path %>
-      <%= link_to "Sign in", new_session_path %>
+        <%= link_to "Sign up", new_user_path %>
+        <%= link_to "Sign in", new_session_path %>
+      
+      <% end %>
+
     </nav>
   </header>
 
