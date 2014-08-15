@@ -28,7 +28,7 @@
         <%= current_user.username %>
         <%= link_to "Dashboard", "#" %>
         <%= link_to "Add a room", new_house_path %>
-        <%= link_to "Orders", "#" %>
+        <%= link_to "Orders", orders_path %>
         <%= link_to "Log out", session_path, method: :delete %>
       
       <% else %>

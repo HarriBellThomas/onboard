@@ -12,15 +12,17 @@ class OrdersController < ApplicationController
  # end
 
   def new
-  	require_user
-  	@user = current_user
-  	@order = @user.orders.new
+    require_user
+    @house = House.find(params[:house_id])
+    @order = @house.orders.new
   end
 
   def create
   	require_user
-  	@user = current_user
-  	@order = @user.orders.new(order_params)
+  	@house = House.find(params[:house_id])
+  	@order = @house.orders.new(order_params)
+    @order.user = current_user
+
   	if @order.save
   		flash[:success] = "Thanks for placing your order."
   		redirect_to orders_path
@@ -32,7 +34,7 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-  	params.require(:user).permit(:stripe_token)
+  	params.require(:order).permit(:stripe_token, :house_id)
   end
 
 end

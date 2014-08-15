@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   end
   
   resource :session, only: [:new, :create, :destroy]
-  resources :houses 
+  
+  resources :houses do
+    resources :orders, only: [:new, :create]
+  end
+
   resources :orders
 
 end

@@ -25,7 +25,7 @@
 
 
 	<div class="actions">
-		<%= link_to "Book Room", new_order_path, class: "button" %>
+		<%= link_to "Book Room", new_house_order_path(@house.id), class: "button" %>
 		<%= link_to "Edit", edit_house_path(@house.id), class: "button" %>
 		<%= link_to "Delete", house_path(@house.id), method: :delete, class: "button" %>
 	</div>
