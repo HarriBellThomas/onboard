@@ -2,12 +2,39 @@
 <html>
 <head>
   <title>Onboard</title>
-  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  
+  <% if params[:controller] == "orders" and params[:action] == "new" %>
+
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript">
+
+  // This identifies your website in the createToken call below
+  Stripe.setPublishableKey('pk_test_DpIV0qh8FTUUYXacWwuI0Y0o');
+
+
+  jQuery(function($) {
+    $('#new_order').submit(function(event) {
+      var $form = $(this);
+
+      // Disable the submit button to prevent repeated clicks
+      $form.find('button').prop('disabled', true);
+
+      Stripe.card.createToken($form, stripeResponseHandler);
+
+      // Prevent the form from submitting with the default action
+      return false;
+    });
+  });
+  </script>
+
+  <% end %>
+
 </head>
 <body>
+
 
 <div class="container">
   <header class="row">

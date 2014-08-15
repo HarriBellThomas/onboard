@@ -5,6 +5,11 @@ class HousesController < ApplicationController
 
   def show
   	@house = House.find(params[:id])
+    if @house.user.id == current_user.id
+      @is_author = true
+    else
+      @is_author = false
+    end
   end
 
   def new
@@ -29,7 +34,13 @@ class HousesController < ApplicationController
   def edit
     require_user
     @user = current_user
-    @house = @user.houses.find(params[:id])
+    @house_temp = House.find(params[:id])
+    if @user.id == @house_temp.user.id
+      @house = @user.houses.find(params[:id])
+    else
+      flash[:error] = "You aren't allowed to edit someone else's house!"
+      redirect_to house_path(params[:id])
+    end
   end
 
   def update
@@ -48,18 +59,23 @@ class HousesController < ApplicationController
   def destroy
     require_user
     @user = current_user
-
-    @house = @user.houses.find( params[:id] )
-    if @house.present?
-      if @house.destroy
-        flash[:success] = "Successfully deleted '#{@house.title}'"
+    @house_temp = House.find(params[:id])
+    if @user.id == @house_temp.user.id
+      @house = @user.houses.find( params[:id] )
+      if @house.present?
+        if @house.destroy
+          flash[:success] = "Successfully deleted '#{@house.title}'"
+        else
+          flash[:error] = "House couldn't be deleted."
+        end
       else
-        flash[:error] = "House couldn't be deleted."
+        flash[:error] = "No house found with ID #{params[:id]} "
       end
+      redirect_to root_path
     else
-      flash[:error] = "No house found with ID #{params[:id]} "
+      flash[:error] = "You aren't allowed to delete someone else's house!"
+      redirect_to house_path(params[:id])
     end
-    redirect_to root_path
   end
 
   private
