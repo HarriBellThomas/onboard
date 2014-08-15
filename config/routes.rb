@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :users do
   	resources :houses, only: [:show, :index]
+    resources :orders, only: [:show]
+
   end
   
   resource :session, only: [:new, :create, :destroy]

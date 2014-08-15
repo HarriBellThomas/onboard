@@ -15,7 +15,7 @@
 
 
 	<div class="description">
-		<%= @house.description %>
+		<%= simple_format @house.description %>
 	</div>
 
 
@@ -25,9 +25,9 @@
 
 
 	<div class="actions">
-		<%= link_to "Book Room", '#' %>
-		<%= link_to "Edit", edit_house_path(@house.id) %>
-		<%= link_to "Delete", house_path(@house.id), method: :delete %>
+		<%= link_to "Book Room", new_order_path, class: "button" %>
+		<%= link_to "Edit", edit_house_path(@house.id), class: "button" %>
+		<%= link_to "Delete", house_path(@house.id), method: :delete, class: "button" %>
 	</div>
 
 
